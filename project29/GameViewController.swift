@@ -53,6 +53,8 @@ class GameViewController: UIViewController {
         }
         player1ScoreLbl.text = "Player 1: \(player1Score)"
         player2ScoreLbl.text = "Player 2: \(player2Score)"
+        
+
     }
 
     override var shouldAutorotate: Bool {

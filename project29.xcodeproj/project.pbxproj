@@ -73,6 +73,7 @@
 				0494607E20E1806B004C8DAE /* AppDelegate.swift */,
 				0494608020E1806B004C8DAE /* GameScene.sks */,
 				0494608220E1806B004C8DAE /* Actions.sks */,
+				0494609820E184FA004C8DAE /* BuildingNode.swift */,
 				0494608420E1806B004C8DAE /* GameScene.swift */,
 				0494608620E1806B004C8DAE /* GameViewController.swift */,
 				0494609620E18117004C8DAE /* Helper.swift */,
@@ -83,7 +84,6 @@
 				0494608B20E1806C004C8DAE /* Assets.xcassets */,
 				0494608D20E1806C004C8DAE /* LaunchScreen.storyboard */,
 				0494609020E1806C004C8DAE /* Info.plist */,
-				0494609820E184FA004C8DAE /* BuildingNode.swift */,
 			);
 			path = project29;
 			sourceTree = "<group>";

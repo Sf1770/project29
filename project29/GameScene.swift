@@ -120,6 +120,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
             [unowned self] in
+            //transitions between the old scene once a player is destroyed to a new scene
+
             let newGame = GameScene(size: self.size)
             newGame.viewController = self.viewController
             self.viewController.currentGame = newGame
@@ -135,6 +137,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func changePlayer() {
+        //changes the player's turn
         if currentPlayer == 1{
             currentPlayer = 2
         } else{
@@ -223,7 +226,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 changePlayer()
             }
         }
+        //updates the score
         self.viewController.player1ScoreLbl.text = "Player 1: \(self.viewController.player1Score)"
         self.viewController.player2ScoreLbl.text = "Player 2: \(self.viewController.player2Score)"
+        
+        //checks if one of the players has scored 3 times already, and if so, an alert controller is launched saying who won and asking if you want to play again
+        if self.viewController.player1Score == 3 && self.viewController.player2Score < 3 {
+            let ac = UIAlertController(title: "Player 1 Wins", message: "Would you like to play again?", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Yes", style: .default) {
+                [unowned self] _ in
+                self.currentPlayer = 1
+                //resets scores back to 0 for the new game
+                self.viewController.player1Score = 0
+                self.viewController.player2Score = 0
+            })
+            ac.addAction(UIAlertAction(title: "No", style: .cancel))
+            self.viewController.present(ac, animated: true, completion: nil)
+        } else if self.viewController.player2Score == 3 && self.viewController.player1Score < 3 {
+            let ac = UIAlertController(title: "Player 2 Wins", message: "Would you like to play again?", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Yes", style: .default) {
+                [unowned self] _ in
+                self.currentPlayer = 1
+                //resets scores back to 0 for the new game
+                self.viewController.player1Score = 0
+                self.viewController.player2Score = 0
+                
+            })
+            ac.addAction(UIAlertAction(title: "No", style: .cancel){
+                [unowned ac] _ in
+                ac.dismiss(animated: true, completion: nil)
+            })
+            self.viewController.present(ac, animated: true, completion: nil)
+        }
     }
 }
