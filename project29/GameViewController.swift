@@ -22,6 +22,11 @@ class GameViewController: UIViewController {
     @IBOutlet weak var velocityLabel: UILabel!
     @IBOutlet weak var launchButton: UIButton!
     @IBOutlet weak var playerNumber: UILabel!
+    @IBOutlet weak var player1ScoreLbl: UILabel!
+    @IBOutlet weak var player2ScoreLbl: UILabel!
+    
+    var player1Score: Int = 0
+    var player2Score: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +51,8 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        player1ScoreLbl.text = "Player 1: \(player1Score)"
+        player2ScoreLbl.text = "Player 2: \(player2Score)"
     }
 
     override var shouldAutorotate: Bool {

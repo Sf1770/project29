@@ -58,10 +58,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 if firstNode.name == "banana" && secondNode.name == "player1"{
                     destroy(player: player1)
+                    self.viewController.player2Score += 1
+                    //self.viewController.ScoreLbl.text = "Score: \(Int())"
                 }
                 
                 if firstNode.name == "banana" && secondNode.name == "player2"{
                     destroy(player: player2)
+                    self.viewController.player1Score += 1
                 }
             }
         }
@@ -120,6 +123,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let newGame = GameScene(size: self.size)
             newGame.viewController = self.viewController
             self.viewController.currentGame = newGame
+            newGame.viewController.player1Score = self.viewController.player1Score
+            newGame.viewController.player2Score = self.viewController.player2Score
             
             self.changePlayer()
             newGame.currentPlayer = self.currentPlayer
@@ -218,5 +223,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 changePlayer()
             }
         }
+        self.viewController.player1ScoreLbl.text = "Player 1: \(self.viewController.player1Score)"
+        self.viewController.player2ScoreLbl.text = "Player 2: \(self.viewController.player2Score)"
     }
 }
